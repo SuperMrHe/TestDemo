@@ -1,29 +1,34 @@
 package hsj.com.testdemo
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.yanzhenjie.andserver.AndServer
 
 import kotlinx.android.synthetic.main.activity_main.*
+import org.apache.httpcore.util.NetUtils
 import java.lang.Exception
+import java.net.InetAddress
+import java.net.ServerSocket
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
-    //    val baseUrl = ""
-//    lateinit var okHttpClient: OkHttpClient
-//    lateinit var retrofit: Retrofit
+
     val httpUtils = HttpUtils()
     var num: Long = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        initClient()
-        getData()
 
+        var intent = Intent(this, UserServers::class.java)
+        startService(intent)
     }
 
     private fun getData() {
@@ -63,22 +68,4 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
-//    fun initClient() {
-    //         retrofit = Retrofit.Builder()
-//            .baseUrl(baseUrl)
-//            .client(okHttpClient)
-//            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//            .addConverterFactory(GsonConverterFactory.create())
-//             .build()
-//        if (okHttpClient == null) {
-//            val log = HttpLoggingInterceptor()
-//            log.level = HttpLoggingInterceptor.Level.BODY
-//            okHttpClient = OkHttpClient.Builder()
-//                .addInterceptor(log)
-//                .connectTimeout(2000, TimeUnit.MILLISECONDS)
-//                .readTimeout(2000, TimeUnit.MILLISECONDS)
-//                .build()
-//        }
-//    }
 }
